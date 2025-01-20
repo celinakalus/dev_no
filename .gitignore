@@ -5,3 +5,5 @@
 *.mod
 *.mod.c
 *.order
+compile_commands.json
+.cache/
