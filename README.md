@@ -35,15 +35,9 @@ You can then load the module like this:
 modprobe ./dev_no.ko
 ```
 
-The major number of the driver will be printed to the kernel log:
+Once you have loaded the module, you will be able to read the `/dev/no`
+file.
 
 ```sh
-dmesg
+cat /dev/no
 ```
-
-Finally, you can create the device node:
-
-```sh
-mknod /dev/no c <major> 0
-```
-
