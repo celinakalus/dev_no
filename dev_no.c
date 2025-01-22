@@ -21,6 +21,29 @@ static int no_show(struct seq_file *, void *);
 
 static int major;
 
+static const char *no_list[] = {
+		"Not in this lifetime.",
+		"Hard pass.",
+		"Negative, Ghost Rider.",
+		"I’ll take a rain check.",
+		"Nah, I’m good.",
+		"Not gonna happen.",
+		"Thanks, but no thanks.",
+		"I’m out.",
+		"That’s a no from me, dawg.",
+		"Can’t help you there.",
+		"Over my dead Wi-Fi signal.",
+		"Nope-tastic.",
+		"I’ve gotta take a pass on that.",
+		"I’ll have to decline your generous offer.",
+		"As if!",
+		"Yeah, no.",
+		"In your dreams.",
+		"That’s a no for now.",
+		"I don’t think so, Tim.",
+		"Denied!",
+	};
+
 static const struct file_operations no_fops = {
 	.owner = THIS_MODULE,
 	.open = no_open,
@@ -36,8 +59,11 @@ static int no_open(struct inode *inode, struct file *file)
 
 static int no_show(struct seq_file *file,  void *data)
 {
+	static int list_index = 0;
+
 	(void)data;
-	seq_puts(file, "no.\n");
+	seq_printf(file, "%s\n", no_list[list_index]);
+	list_index = (list_index + 1) % ARRAY_SIZE(no_list);
 	return 0;
 }
 
