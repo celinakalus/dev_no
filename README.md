@@ -21,7 +21,27 @@ risks associated with its installation and operation, including but not
 limited to potential system crashes, data loss, or any other adverse
 impacts on system performance.
 
-## Building
+## Building and installing using `dkms`
+
+[DKMS](https://github.com/dell/dkms) is a tool to install kernel modules
+and automatically rebuild them with each kernel update. `dev_no` ships
+with a `dkms` configuration file, allowing you to easily install the
+module.
+
+```sh
+dkms add <path-to-sources>
+dmks install dev_no/<version>
+dmks build dev_no/<version>
+```
+
+If you want `/dev/no` to be available at system startup, you can add a
+configuration file to `/etc/modules-load.d/`:
+
+```sh
+echo "dev_no" | sudo tee /etc/modules-load.d/dev_no.conf
+```
+
+## Manual building
 
 On Arch Linux, have `linux-headers` installed and run
 
